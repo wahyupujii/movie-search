@@ -1,0 +1,26 @@
+.header {
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+
+.movies {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    padding:20;
+    box-sizing: border-box;
+}
+
+.movie {
+    margin: 30px 0px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: red;
+}
