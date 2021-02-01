@@ -13,7 +13,7 @@ const Home = () => {
         setLoading(true);
         setMessage(null);
 
-        axios.get(`http://www.omdbapi.com/?s=${newValue}&apikey=77e089d`)
+        axios.get(`http://www.omdbapi.com/?s=${newValue}&apikey=${process.env.REACT_APP_YOUR_API_KEY}`)
         .then((response) => {
             if (response.data.Response === "True") {
                 setMovies(response.data.Search)
