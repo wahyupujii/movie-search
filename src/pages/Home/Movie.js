@@ -6,22 +6,27 @@ import axios from "axios";
 const Movie = ({movie}) => {
     const poster = 
         movie.Poster === "N/A" ? defaultImage : movie.Poster;
-    
-    const [detailMovie , setDetailMovie] = useState({});
+        
+    const [detailMovie , setDetailMovie] = useState([]);
+        
+    const movieID = movie.imdbID;
 
-    const sendID = () => {
-        const movieid = movie.imdbID;
-        const urlApi = `http://www.omdbapi.com/?i=${movieid}&apikey=77e089d`;
-        axios.get(urlApi)
+    const detailMovieFunc = (movieid) => {
+        axios.get(`http://www.omdbapi.com/?i=${movieid}&apikey=${process.env.REACT_APP_YOUR_API_KEY}`)
         .then((response) => {
-            if (Object.keys(response.data).length !== 0) {
-                setDetailMovie({...response.data});
-            }    
+            setDetailMovie({
+                title: response.data.Title,
+                actors: response.data.Actors,
+                ratings: response.data.imdbRating,
+                plot: response.data.Plot
+            })
         })
     }
 
     return (        
-        <div className="card movie" 
+        <div 
+            className="card movie"
+            id={movie.imdbID} 
             style={{
                 width: "18rem",
                 display: 'flex',
@@ -42,7 +47,9 @@ const Movie = ({movie}) => {
                     width: "50%",
                     margin: "10px 0px 20px 0px"
                 }}
-                onClick={sendID}
+                onClick={() => {
+                    detailMovieFunc(movieID)
+                }}
             >
                 See Detail ... 
             </button>

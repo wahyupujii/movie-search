@@ -10,9 +10,6 @@ const Home = () => {
     const [errorMessage , setMessage] = useState(null);
 
     const handleSearch = (newValue) => {
-        setLoading(true);
-        setMessage(null);
-
         axios.get(`http://www.omdbapi.com/?s=${newValue}&apikey=${process.env.REACT_APP_YOUR_API_KEY}`)
         .then((response) => {
             if (response.data.Response === "True") {
@@ -24,11 +21,10 @@ const Home = () => {
             }
         })
     }
-
     return (
         <div className="home container">
             <div className="header">
-                <h1>Movie Rating</h1>
+                <h1>Movie Search</h1>
                 <span>Seach Movie</span>
                 <Search search={(valueFromChild) => handleSearch(valueFromChild)} />
             </div>

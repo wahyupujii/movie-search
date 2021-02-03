@@ -1,23 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 
 const Modal = ({detail}) => {
-    // const [detailObj , setDetailObj] = useState({});
-    
-    // if (Object.keys(detail).length !== 0) {
-    //     setDetailObj({
-    //         actors: detail.Actors, 
-    //         director: detail.Director,
-    //         genre: detail.Genre,
-    //         plot: detail.Plot,
-    //         poster: detail.Poster,
-    //         rating: detail.imdbRating,
-    //         release: detail.release,
-    //         runtime: detail.runtime
-    //     })
-    //     console.log(detailObj)
-    // }    
-    // console.log("detail di Modal.js")
-    // console.log(detail)
+    useEffect(() => {
+        document.querySelector(".modal-title").textContent = detail.title;
+        document.querySelector(".actors").textContent = detail.actors;
+        document.querySelector(".ratings").textContent = detail.ratings;
+        document.querySelector(".plot").textContent = detail.plot;
+    }, [detail])
 
     return (
         <div className="blok-modal">
@@ -25,27 +14,35 @@ const Modal = ({detail}) => {
                 <div className="modal-dialog">
                     <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">{detail.Title}</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 className="modal-title" id="exampleModalLabel">{detail.title}</h5>
                     </div>
                     <div className="modal-body">
-                        {/* {
-                            (
-                                <div>
-                                    <p>Actors: {idResponse.Actors}</p>
-                                    <p>Actors: {idResponse.Actors}</p>
-                                    <p>Actors: {idResponse.Actors}</p>
-                                    <p>Actors: {idResponse.Actors}</p>
-                                    <p>Actors: {idResponse.Actors}</p>
-                                    <p>Actors: {idResponse.Actors}</p>
-                                    <p>Actors: {idResponse.Actors}</p>
-                                </div>
-                            )
-                        } */}
+                        <table className="table" 
+                            style={{
+                                textAlign: "left"
+                            }}
+                        >
+                            <tbody>
+                                <tr>
+                                    <td style={{width: "30%"}}>Actors</td>
+                                    <td>:</td>
+                                    <td className="actors">{detail.actors}</td>
+                                </tr>
+                                <tr>
+                                    <td style={{width: "30%"}}>IMDB Ratings : </td>
+                                    <td>:</td>
+                                    <td className="ratings">{detail.ratings}</td>
+                                </tr>
+                                <tr>
+                                    <td style={{width: "30%"}}>Plot : </td>
+                                    <td>:</td>
+                                    <td className="plot">{detail.plot}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
+                        <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>
                     </div>
                 </div>
